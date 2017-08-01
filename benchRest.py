@@ -1,4 +1,5 @@
 import urllib2
+import datetime
 
 # Constants
 DATE = "Date"
@@ -14,13 +15,11 @@ BASE_URL = 'http://resttest.bench.co/transactions'
 URL_CAP = '.json'
 
 
-class Transaction(object):
+# Global Vars (subsitute for DB)
 
-    def __init__(self, date, ledger, amount, company):
-        self.date = date
-        self.ledger = ledger
-        self.amount = amount
-        self.company = company
+total_transaction_count = 0
+page = 1
+
 
 def get_page(page_num):
 
@@ -29,6 +28,8 @@ def get_page(page_num):
 
     return response
 
+
+# Parsing
 def parse_transactions(json):
     all_transactions = json[transactions]
     parsed_transactions = []
@@ -42,21 +43,26 @@ def parse_transactions(json):
 
     return parsed_transactions
 
-
 def parse_transaction(transaction):
 
     try:
-        date = transaction[DATE]
+
+        string_date = transaction[DATE]
+        date = datetime.datetime(string_date, '%Y-%m-%d')
         ledger = transaction[LEDGER]
-        amount = transaction[AMOUNT]
+        amount = int(transaction[AMOUNT])
         company = transaction[COMPANY]
 
         new_transaction = Transaction(date, ledger, amount, company)
 
         return new_transaction
 
-    except KeyError:
+    except KeyError, ValueError:
         return
+
+def next_page():
+    pass
+
 
 
 
