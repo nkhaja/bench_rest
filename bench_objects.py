@@ -34,7 +34,7 @@ class MainAccount(object):
                 self.ordered_balances = sorted(self.daily_balances.keys())
 
 
-    def calc_daily_bal():
+    def print_daily_bal():
         # find way to order this later
 
         for key in self.ordered_balances:
