@@ -8,7 +8,7 @@ class Transaction(object):
 
 
 class MainAccount(object):
-    def __init__(self, transactions):
+    def __init__(self):
         self.total_balance = 0
         self.transactions = []
         self.daily_balances = {}
@@ -16,7 +16,7 @@ class MainAccount(object):
 
 
 
-    def add_transactions(transactions):
+    def add_transactions(self, transactions):
 
         num_keys_before = len(self.daily_balances)
 
@@ -34,8 +34,10 @@ class MainAccount(object):
                 self.ordered_balances = sorted(self.daily_balances.keys())
 
 
-    def print_daily_bal():
+    def print_daily_bal(self):
         # find way to order this later
 
+        running = 0
         for key in self.ordered_balances:
-            print daily_balances[key]
+            running += self.daily_balances[key]
+            print key, ': ', running 

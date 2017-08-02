@@ -1,6 +1,6 @@
 # Used for parsing transactions
 from bench_objects import Transaction, MainAccount
-
+import datetime
 
 # Constants
 DATE = "Date"
@@ -15,7 +15,7 @@ TRANSACTIONS = 'transactions'
 
 
 def parse_transactions(json):
-    all_transactions = json[transactions]
+    all_transactions = json[TRANSACTIONS]
     parsed_transactions = []
 
     for transaction in all_transactions:
@@ -30,11 +30,10 @@ def parse_transactions(json):
 def parse_transaction(transaction):
 
     try:
-
         string_date = transaction[DATE]
-        date = datetime.datetime(string_date, '%Y-%m-%d')
+        date = datetime.datetime.strptime(string_date, '%Y-%m-%d')
         ledger = transaction[LEDGER]
-        amount = int(transaction[AMOUNT])
+        amount = float(transaction[AMOUNT])
         company = transaction[COMPANY]
 
         new_transaction = Transaction(date, ledger, amount, company)
