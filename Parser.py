@@ -7,21 +7,24 @@ DATE = "Date"
 LEDGER = "Ledger"
 AMOUNT = "Amount"
 COMPANY = "Company"
-
-totalCount = "totalCount"
-page = 'page'
 TRANSACTIONS = 'transactions'
 
 
 
-def parse_transactions(json):
-    all_transactions = json[TRANSACTIONS]
+def parse_transactions(json_response):
+
+    all_transactions = json_response.get(TRANSACTIONS)
     parsed_transactions = []
+
+    if all_transactions == None:
+        return parsed_transactions
 
     for transaction in all_transactions:
 
         parsed_transaction = parse_transaction(transaction)
 
+        # None will be returned if parsing errors occurred
+        # i.e. malformed response with missing fields
         if parsed_transaction != None:
             parsed_transactions.append(parsed_transaction)
 
@@ -40,5 +43,6 @@ def parse_transaction(transaction):
 
         return new_transaction
 
+    # Land here if response is missing one of the necessary fields
     except KeyError, ValueError:
         return
