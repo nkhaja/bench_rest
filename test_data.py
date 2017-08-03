@@ -1,3 +1,9 @@
+sample_transaction = {
+    "Date": "2013-12-18",
+    "Ledger": "Business Meals & Entertainment Expense",
+    "Amount": "-8.94"
+}
+
 good_input_10 = '''{
     "totalCount": 38,
     "page": 2,

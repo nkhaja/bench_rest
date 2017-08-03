@@ -26,7 +26,6 @@ def get_page(page_num):
 # loads multiple pages of info within a given range
 def get_page_window(from_page, to_page=None):
 
-    print 'called with params', from_page, to_page
     responses = []
 
     # A top end of the range is given
@@ -38,11 +37,8 @@ def get_page_window(from_page, to_page=None):
 
         for i in range(from_page, to_page+1):
             response = get_page(i)
-            print 'iteration' , i
-            print len(responses)
 
             if response == None:
-                print 'response is none'
                 break
 
             responses.append(response)

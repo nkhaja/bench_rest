@@ -40,4 +40,4 @@ class MainAccount(object):
         running = 0
         for key in self.ordered_balances:
             running += self.daily_balances[key]
-            print key, ': ', running 
+            print key, ': ', running
