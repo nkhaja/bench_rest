@@ -3,8 +3,6 @@ from Parser import *
 from Paging import *
 
 # Constants
-totalCount = "totalCount"
-page = 'page'
 TRANSACTIONS = 'transactions'
 
 BASE_URL = 'http://resttest.bench.co/transactions/'

@@ -4,6 +4,9 @@ import json
 TRANSACTIONS = 'transactions'
 BASE_URL = 'http://resttest.bench.co/transactions/'
 URL_CAP = '.json'
+PAGE = 'page'
+
+TOTAL_COUNT = "totalCount"
 
 # Loads a single page of json
 def get_page(page_num):
@@ -60,3 +63,26 @@ def get_page_window(from_page, to_page=None):
             responses.append(response)
 
         return responses
+
+
+
+
+# class created for disucssion of future steps, not used in implementation
+
+# This class is used to determine whether we have all the pages available
+
+class Pager(object):
+
+    def __init__(self, page, num_items_loaded):
+        self.page = page
+        self.num_items_loaded = num_items_loaded
+
+    # Checks total_count for more items than are loaded
+    # Using request on the most recently visited valid page
+    def has_more_pages(fun, *args):
+        response = fun(args)
+
+        if not response:
+            return False
+
+        return response[TOTAL_COUNT] < self.total_items

@@ -46,3 +46,6 @@ def parse_transaction(transaction):
     # Land here if response is missing one of the necessary fields
     except KeyError, ValueError:
         return
+
+
+def parse_page_info(json_response):
