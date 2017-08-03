@@ -1,4 +1,4 @@
-import unittest
+all_datesimport unittest
 import json
 from Parser import *
 from test_data import *
@@ -89,7 +89,7 @@ class MainAccountTest(unittest.TestCase):
         running = 0
         test_running = 0
         for i in range(len(days)):
-            key = main_account.ordered_balances[i]
+            key = main_account.all_dates[i]
             running += main_account.daily_balances[key]
             test_running += sum(days[i])
 
