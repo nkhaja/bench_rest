@@ -28,4 +28,4 @@ Once started the program will give you the following options:
 
 3. quit: exits the app
 
-To these commands either type the name of the command i.e. 'total_blanace' or enter digit corresponding to the command i.e. '1' will give you the total_balance
+To execute these commands either type the name of the command i.e. 'total_blanace' or enter the digit corresponding to the command i.e. '1' will give you the total_balance
