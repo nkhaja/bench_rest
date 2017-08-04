@@ -1,5 +1,6 @@
 import urllib2
 import json
+import math
 
 TRANSACTIONS = 'transactions'
 BASE_URL = 'http://resttest.bench.co/transactions/'
@@ -7,6 +8,7 @@ URL_CAP = '.json'
 PAGE = 'page'
 
 TOTAL_COUNT = "totalCount"
+PAGE_SIZE = 10
 
 # Loads a single page of json
 def get_page(page_num):
@@ -25,9 +27,10 @@ def get_page(page_num):
 
 # TODO update to stop where total number of cases reached
 
-
 # loads multiple pages of info within a given range
 def get_page_window(from_page, to_page=None):
+
+    limit = None
 
     responses = []
 
@@ -41,29 +44,44 @@ def get_page_window(from_page, to_page=None):
         for i in range(from_page, to_page+1):
             response = get_page(i)
 
-            if response == None:
+            if not response:
+                break
+            elif limit_reached(response):
                 break
 
             responses.append(response)
 
-        print 'returning responses'
         return responses
 
     # return all pages from_page and onwards
 
     else:
         while True:
-            print 'getting a response'
             response = get_page(from_page)
             from_page += 1
 
+            # Check to see if we've received all items
             if not response:
                 break
 
             responses.append(response)
 
+            if limit_reached(response):
+                break
+
         return responses
 
+
+def limit_reached(latest_response):
+    if latest_response.get(TOTAL_COUNT) and latest_response.get(PAGE):
+        total = latest_response[TOTAL_COUNT]
+        page = latest_response[PAGE]
+        max_page = math.ceil(float(total)/PAGE_SIZE)
+
+        return page == max_page
+
+    else:
+        raise ValueError('latest_response is missing key "totalCount" or "page"')
 
 
 

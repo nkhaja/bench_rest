@@ -29,11 +29,9 @@ def get_all_transactions():
 def main_app():
     print 'Welcome to the Bench.co Rest API \n'
     print 'Please type one of the following commands: \n '
-    options = ''' \n\n 1. total_balance: gives total balance for all transactions
-                  available on this API
+    options = ''' \n\n1. total_balance: gives total balance for all transactions available on this API
 
-2. daily_balance: gives the daily running balance from
-   transactions on this API
+2. daily_balance: gives the daily running balance from transactions on this API
 
 3. quit: exits the app
     \n\n'''
