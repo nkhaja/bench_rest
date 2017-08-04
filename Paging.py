@@ -28,6 +28,8 @@ def get_page(page_num):
 # TODO update to stop where total number of cases reached
 
 # loads multiple pages of info within a given range
+# If not end of range given then goes until last page
+# This feature can be leveraged in the future transactions list gets too large
 def get_page_window(from_page, to_page=None):
 
     limit = None
@@ -46,15 +48,15 @@ def get_page_window(from_page, to_page=None):
 
             if not response:
                 break
-            elif limit_reached(response):
-                break
 
             responses.append(response)
+
+            elif limit_reached(response):
+                break
 
         return responses
 
     # return all pages from_page and onwards
-
     else:
         while True:
             response = get_page(from_page)

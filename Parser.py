@@ -10,7 +10,8 @@ COMPANY = "Company"
 TRANSACTIONS = 'transactions'
 
 
-
+# Parses many  transactions from a json response
+# returns an empty array if response is not formatted correctly
 def parse_transactions(json_response):
 
     all_transactions = json_response.get(TRANSACTIONS)
@@ -30,6 +31,9 @@ def parse_transactions(json_response):
 
     return parsed_transactions
 
+# parses a single transaction
+# prints an error message and returns none if a given transaction json
+## is  missing parameters
 def parse_transaction(transaction):
 
     try:
@@ -45,4 +49,5 @@ def parse_transaction(transaction):
 
     # Land here if response is missing one of the necessary fields
     except KeyError, ValueError:
+        print 'malformed response detected'
         return

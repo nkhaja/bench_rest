@@ -21,7 +21,7 @@ class MainAccount(object):
         self.all_dates = []
 
 
-
+    # adds transactions to the main account
     def add_transactions(self, transactions):
 
         num_keys_before = len(self.daily_balances)

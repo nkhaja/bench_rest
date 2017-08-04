@@ -4,14 +4,13 @@ from Paging import *
 
 # Constants
 TRANSACTIONS = 'transactions'
-
 BASE_URL = 'http://resttest.bench.co/transactions/'
 URL_CAP = '.json'
 
 #global var
 main_account = MainAccount()
 
-
+# Gets all transactions from the REST API
 def get_all_transactions():
 
     loaded_transactions = []
