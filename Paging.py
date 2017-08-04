@@ -51,7 +51,7 @@ def get_page_window(from_page, to_page=None):
 
             responses.append(response)
 
-            elif limit_reached(response):
+            if limit_reached(response):
                 break
 
         return responses
